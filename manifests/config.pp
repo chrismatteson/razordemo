@@ -21,4 +21,11 @@ class razordemo::config (
   unless $tags == 'undef' {
     create_resources('razor_tag',$tags)
   }
+  firewall { '200 forwarding rule':
+    chain    => 'POSTROUTING',
+    jump     => 'MASQUERADE',
+    proto    => 'all',
+    outiface => 'eth0',
+    table    => 'nat',
+  }
 }
