@@ -32,7 +32,7 @@ class razordemo::dnsmasq (
 
   file { "${dnsmasq_config_dir}/virtualbox":
     ensure  => file,
-    source  => "puppet:///modules/${module_name}/virtualbox",
+    content  => template("${module_name}/virtualbox.erb"),
     require => File["${dnsmasq_config_dir}"],
     notify  => Service['dnsmasq'],
   }
@@ -60,8 +60,8 @@ class razordemo::dnsmasq (
   }  
 
   case versioncmp( $::pe_version, '3.7.99') {
-      '1':  { $ipxe_dl_cmd = "/usr/bin/wget --no-check-certificate 'https://razor-server:8151/api/microkernel/bootstrap?nic_max=1&http_port=8150' -O /var/lib/tftpboot/bootstrap.ipxe" }
-      '-1': { $ipxe_dl_cmd = "/usr/bin/wget --no-check-certificate 'http://razor-server:8080/api/microkernel/bootstrap?nic_max=1' -O /var/lib/tftpboot/bootstrap.ipxe" }  }
+      '1':  { $ipxe_dl_cmd = "/usr/bin/wget --no-check-certificate 'https://${hostname}:8151/api/microkernel/bootstrap?nic_max=1&http_port=8150' -O /var/lib/tftpboot/bootstrap.ipxe" }
+      '-1': { $ipxe_dl_cmd = "/usr/bin/wget --no-check-certificate 'http://${hostname}:8080/api/microkernel/bootstrap?nic_max=1' -O /var/lib/tftpboot/bootstrap.ipxe" }  }
 
   exec { 'get bootstrap.ipxe from razor server' :
     command => $ipxe_dl_cmd, 

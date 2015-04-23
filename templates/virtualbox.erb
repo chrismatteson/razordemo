@@ -13,7 +13,7 @@ bind-interfaces
 # service.
 # Select a range from the address and netmask shown in VirtualBox's
 # host-only network configuration dialog:
-dhcp-range=192.168.50.2,192.168.50.150,infinite
+dhcp-range=10.20.1.150,10.20.1.200,infinite
  
 # The default directory does not exist on OSX and this cause an
 # error when enabling DHCP, set an alternative location here:
@@ -37,8 +37,8 @@ domain=vm
  
 # This must be the address of your host on the vboxnet0 network
 # find this in the VirtualBox host-only network preferences
-address=/vbox-host.vm/192.168.50.32
+address=/vbox-host.vm/10.20.1.11
 
 # This setting enables reverse DNS lookup.
-server=/192.in-addr.arpa/192.168.50.1
+server=/10.in-addr.arpa/10.20.1.11
 
