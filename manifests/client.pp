@@ -7,7 +7,7 @@ class razordemo::client {
 
   file { '/usr/bin/razor' :
     ensure  => link,
-    targer  => '/opt/puppet/bin/razor',
+    target  => '/opt/puppet/bin/razor',
     require => Package['pe-razor-client'],
   }
 }
