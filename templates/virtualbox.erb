@@ -14,6 +14,9 @@ bind-interfaces
 # Select a range from the address and netmask shown in VirtualBox's
 # host-only network configuration dialog:
 dhcp-range=10.20.1.150,10.20.1.200,infinite
+
+# DNS configuration
+dhcp-option=6,<%= ipaddress_eth1 %>
  
 # The default directory does not exist on OSX and this cause an
 # error when enabling DHCP, set an alternative location here:
