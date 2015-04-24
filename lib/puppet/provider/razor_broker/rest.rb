@@ -31,7 +31,7 @@ Puppet::Type.type(:razor_broker).provide :rest, :parent => Puppet::Provider::Res
 
     {
       :name           => responseJson['name'],
-      :broker_type    => responseJson['broker-type'],
+      :broker_type    => responseJson['broker_type'],
       :configuration  => responseJson['configuration'],
       :ensure         => :present
     }
