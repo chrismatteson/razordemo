@@ -37,8 +37,8 @@ domain=vm
  
 # This must be the address of your host on the vboxnet0 network
 # find this in the VirtualBox host-only network preferences
-address=/vbox-host.vm/10.20.1.11
+address=/vbox-host.vm/<% ipaddress_eth1 %>
 
 # This setting enables reverse DNS lookup.
-server=/10.in-addr.arpa/10.20.1.11
+server=/10.in-addr.arpa/<% ipaddress_eth1 %>
 
