@@ -1,4 +1,4 @@
-class razordemo::params {
+class razordemo::params (
   $dnsmasq_config_dir  = '/etc/dnsmasq.d',
   $dnsmasq_config_file = '/etc/dnsmasq.conf',
   $repos = {
@@ -7,7 +7,7 @@ class razordemo::params {
       'iso_url' => 'http://mirror.san.fastserv.com/pub/linux/centos/6.6/isos/x86_64/CentOS-6.6-x86_64-minimal.iso',
       'task'    => 'centos',
     }
-  }
+  },
   $brokers = {
     'puppet-enterprise' => {
       'ensure'      => 'present',
@@ -16,7 +16,7 @@ class razordemo::params {
         'server' => 'master.inf.puppetlabs.demo',
       },
     }
-  }
+  },
   $policies = {
     'centos-for-small' => {
       'ensure'        => 'present',
@@ -29,10 +29,13 @@ class razordemo::params {
       'node_metadata' => {},
       'tags'          => ['small'],
     }
-  }
+  },
   $tags = {
     'small' => {
       'ensure' => 'present',
       'rule'   => ['in', ['fact', 'processorcount'], 1, 2 ],
     }
-  }
+  },
+  $tasks = 'undef'
+  ){
+}

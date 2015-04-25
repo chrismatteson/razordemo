@@ -10,9 +10,8 @@ class razordemo (
 
   include razordemo::client
   include razordemo::forward_ipv4
-  contain razordemo::dnsmasq
-  contain razordemo::config
 
+  class {'pe_razor':} ->
   class {'razordemo::dnsmasq':
     dnsmasq_config_dir  => $dnsmasq_config_dir,
     dnsmasq_config_file => $dnsmasq_config_file,   
