@@ -1,6 +1,6 @@
 class razordemo::dnsmasq (
-  $dnsmasq_config_dir = '/etc/dnsmasq.d',
-  $dnsmasq_config_file = '/etc/dnsmasq.conf'
+  $dnsmasq_config_dir,
+  $dnsmasq_config_file
   ) {
 
   package { 'dnsmasq':

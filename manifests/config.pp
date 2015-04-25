@@ -1,9 +1,9 @@
 class razordemo::config (
-  $repos    = hiera_hash(razordemo::config::repos,'undef'),
-  $brokers  = hiera_hash(razordemo::config::brokers,'undef'),
-  $tasks    = hiera_hash(razordemo::config::tasks,'undef'),
-  $policies = hiera_hash(razordemo::config::policies,'undef'),
-  $tags     = hiera_hash(razordemo::config::tags,'undef')
+  $repos,
+  $brokers,
+  $tasks,
+  $policies,
+  $tags
   ) {
 
   unless $repos == 'undef' {
