@@ -1,14 +1,14 @@
 class razordemo::params {
   $dnsmasq_config_dir  = '/etc/dnsmasq.d',
   $dnsmasq_config_file = '/etc/dnsmasq.conf',
-  $repos               = {
+  $repos = {
     'centos-6.6' => {
       'ensure'  => 'present',
       'iso_url' => 'http://mirror.san.fastserv.com/pub/linux/centos/6.6/isos/x86_64/CentOS-6.6-x86_64-minimal.iso',
       'task'    => 'centos',
     }
   }
-  $brokers             = {
+  $brokers = {
     'puppet-enterprise' => {
       'ensure'      => 'present',
       'broker_type' => 'puppet-pe',
@@ -17,7 +17,7 @@ class razordemo::params {
       },
     }
   }
-  $policies            = {
+  $policies = {
     'centos-for-small' => {
       'ensure'        => 'present',
       'repo'          => 'centos-6.6',

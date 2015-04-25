@@ -1,11 +1,11 @@
 class razordemo (
-  $dnsmasq_config_dir  = $demomodule::params::dnsmasq_config_dir,
-  $dnsmasq_config_file = $demomodule::params::dnsmasq_config_file,
-  $repos               = hiera_hash('demomodule::repos_hash',$demomodule::params::repos),
-  $brokers             = hiera_hash('demomodule::brokers_hash',$demomodule::params::brokers),
-  $tasks               = hiera_hash('demomodule::tasks_hash',$demomodule::params::tasks,
-  $policies            = hiera_hash('demomodule::policies_hash',$demomodule::params::policies),
-  $tags                = hiera_hash('demomodule::tags_hash',$demomodule::params::tags),
+  $dnsmasq_config_dir  = $razordemo::params::dnsmasq_config_dir,
+  $dnsmasq_config_file = $razordemo::params::dnsmasq_config_file,
+  $repos               = hiera_hash('razordemo::repos_hash', $razordemo::params::repos),
+  $brokers             = hiera_hash('razordemo::brokers_hash', $razordemo::params::brokers),
+  $tasks               = hiera_hash('razordemo::tasks_hash', $razordemo::params::tasks),
+  $policies            = hiera_hash('razordemo::policies_hash', $razordemo::params::policies),
+  $tags                = hiera_hash('razordemo::tags_hash', $razordemo::params::tags),
   ) inherits razordemo::params {
 
   include razordemo::client
@@ -13,11 +13,11 @@ class razordemo (
   contain razordemo::dnsmasq
   contain razordemo::config
 
-  Class {'razordemo::dnsmasq':
+  class {'razordemo::dnsmasq':
     dnsmasq_config_dir  => $dnsmasq_config_dir,
     dnsmasq_config_file => $dnsmasq_config_file,   
   } ->
-  Class {'razordemo::config':
+  class {'razordemo::config':
     repos    => $repos,
     brokers  => $brokers,
     tasks    => $tasks,
