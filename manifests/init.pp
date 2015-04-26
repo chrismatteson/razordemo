@@ -12,6 +12,12 @@ class razordemo (
   include razordemo::forward_ipv4
 
   class {'pe_razor':} ->
+  file_line { '/etc/hosts':
+    ensure => 'absent',
+    path   => '/etc/hosts',
+    line   => "127.0.1.1 $::fqdn $::hostname",
+    notify => Service['dnsmasq'],
+  } ->
   class {'razordemo::dnsmasq':
     dnsmasq_config_dir  => $dnsmasq_config_dir,
     dnsmasq_config_file => $dnsmasq_config_file,   
