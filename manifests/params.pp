@@ -18,7 +18,7 @@ class razordemo::params (
     }
   },
   $policies = {
-    'centos-for-small' => {
+    'centos-for-virtual' => {
       'ensure'        => 'present',
       'repo'          => 'centos-6.6',
       'task'          => 'centos',
@@ -27,13 +27,13 @@ class razordemo::params (
       'root_password' => 'puppet',
       'max_count'     => 20,
       'node_metadata' => {},
-      'tags'          => ['small'],
+      'tags'          => ['virtual'],
     }
   },
   $tags = {
-    'small' => {
+    'virtual' => {
       'ensure' => 'present',
-      'rule'   => ['in', ['fact', 'processorcount'], 1, 2 ],
+      'rule'   => ['=', ['fact', 'is_virtual'], true ],
     }
   },
   $tasks = 'undef'

@@ -17,7 +17,7 @@ class razordemo (
     path   => '/etc/hosts',
     line   => "127.0.1.1 $::fqdn $::hostname",
     notify => Service['dnsmasq'],
-  } ->
+  } ~>
   class {'razordemo::dnsmasq':
     dnsmasq_config_dir  => $dnsmasq_config_dir,
     dnsmasq_config_file => $dnsmasq_config_file,   
@@ -29,4 +29,8 @@ class razordemo (
     policies => $policies,
     tags     => $tags,
   }
+  contain pe_razor
+  contain razordemo::dnsmasq
+  contain razordemo::config
+
 }
