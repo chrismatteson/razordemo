@@ -1,4 +1,10 @@
 # razordemo
+
+Credit: The types and providers under lib here are taken and slightly modified
+from Lavaburn/razor.  I intend to wrap some case statements around the changes
+from <3.8 to >3.8 in terms of ports and security, and commit those upstream
+when I have time.
+
 This module builds a fully functioning Razor demo.  It requires two additional
 things to work seemlessly, both of which will be a part of a future seteam stack.
 
