@@ -8,20 +8,24 @@ when I have time.
 This module builds a fully functioning Razor demo.  It requires two additional
 things to work seemlessly, both of which will be a part of a future seteam stack.
 
-1) Update /etc/puppetlabs/puppet/autosign.conf with this line:
+1) Disable DHCP for the vboxnet0 network on your VirtualBox setup.  I also had
+to do a ps -A, find the virtualbox dhcp process and kill it manually for some
+reason
+
+2) Update /etc/puppetlabs/puppet/autosign.conf with this line:
 host*.vm
 
-2) Build a VM which will PXE boot to the vboxnet0 network.  This can be done
+3) Build a VM which will PXE boot to the vboxnet0 network.  This can be done
 manually or you can pull down the box I built on atlas with:
 vagrant init chrismatteson/iPXE.
 
-Additionally, this VM, already configured for the vboxnet0 network will be
-included in but commented out of a future stack, and will require editing of
+Additionally, this VM, already configured for the vboxnet0 is included in but
+commented out of the seteam-vagrant-stack stack, and will require editing of
 config/vms.yaml to activate.  A vagrant up on that VM will also cause it to
 launch graphically.
 
 
-In order to use this module, simple classify a linux VM with the class razordemo.
+In order to use this module, simple classify a centos 6 VM with the class razordemo.
 Currently the module requires two puppet runs on the system to complete due to
 the need for Razor to build bootstrap.ipxe after it's installed. 
 
@@ -34,5 +38,13 @@ gem install pe-razor-client --source http://rubygems.delivery.puppetlabs.net/
 Note that is our internal gem repositiory and will require you being on the VPN to
 access.
 
+Additional notes:
+The Razor OS Image (Centos 7) username and password are:
+root/thincrust
+
+The centos6.6 image which this installs had the username and password of:
+root/puppet
+
 Please let me know if you have questions or issues.  Thanks.
+
 - Chris Matteson 4/27/15
