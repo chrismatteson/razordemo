@@ -10,10 +10,10 @@ things to work seemlessly, both of which will be a part of a future seteam stack
 
 1) Disable DHCP for the vboxnet0 network on your VirtualBox setup.  I also had
 to do a ps -A, find the virtualbox dhcp process and kill it manually for some
-reason
+reason.  Apparently shutting down all VMs will avoid the need to kill it manually.
 
 2) Update /etc/puppetlabs/puppet/autosign.conf with this line:
-host*.vm
+host*.vm (This is done in the seteam-vagrant-stack)
 
 3) Build a VM which will PXE boot to the vboxnet0 network.  This can be done
 manually or you can pull down the box I built on atlas with:
@@ -28,6 +28,10 @@ launch graphically.
 In order to use this module, simple classify a centos 6 VM with the class razordemo.
 Currently the module requires two puppet runs on the system to complete due to
 the need for Razor to build bootstrap.ipxe after it's installed. 
+
+When Razor is launching the first time, it will sit for several minutes apparently
+doing nothing, and most like the only message on the screen will be a warning about
+CPU compatibility.  Just wait.
 
 As configured, this module will install centos6.6 onto any system where
 is_virtual = true that boots from it.  Additional rules an be added to hiera and
