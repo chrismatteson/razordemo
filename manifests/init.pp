@@ -9,9 +9,10 @@ class razordemo (
   ) inherits razordemo::params {
 
   include razordemo::client
-  include razordemo::forward_ipv4
+  contain razordemo::forward_ipv4
 
   class {'pe_razor':} ->
+  Class['razordemo::forward_ipv4'] ->
   file_line { '/etc/hosts':
     ensure => 'absent',
     path   => '/etc/hosts',
