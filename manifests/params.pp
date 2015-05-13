@@ -23,7 +23,7 @@ class razordemo::params (
       'repo'          => 'centos-6.6',
       'task'          => 'centos',
       'broker'        => 'puppet-enterprise',
-      'hostname'      => 'host${id}.razor.vm',
+      'hostname'      => 'host${id}',
       'root_password' => 'puppet',
       'max_count'     => 20,
       'node_metadata' => {},
