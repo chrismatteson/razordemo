@@ -16,7 +16,7 @@ bind-interfaces
 dhcp-range=10.20.1.150,10.20.1.200,infinite
 
 # DNS configuration
-dhcp-option=6,<%= ipaddress_eth1 %>
+dhcp-option=6,<%= @ipaddress_eth1 %>
  
 # The default directory does not exist on OSX and this cause an
 # error when enabling DHCP, set an alternative location here:
@@ -40,8 +40,8 @@ domain=vm
  
 # This must be the address of your host on the vboxnet0 network
 # find this in the VirtualBox host-only network preferences
-address=/vbox-host.vm/<%= ipaddress_eth1 %>
+address=/vbox-host.vm/<%= @ipaddress_eth1 %>
 
 # This setting enables reverse DNS lookup.
-server=/10.in-addr.arpa/<%= ipaddress_eth1 %>
+server=/10.in-addr.arpa/<%= @ipaddress_eth1 %>
 

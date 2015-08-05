@@ -5,7 +5,7 @@ class razordemo::params (
     'centos-6.6' => {
       'ensure'  => 'present',
       'iso_url' => 'http://mirror.san.fastserv.com/pub/linux/centos/6.6/isos/x86_64/CentOS-6.6-x86_64-minimal.iso',
-      'task'    => 'centos',
+      'task'    => 'centos/6',
     }
   },
   $brokers = {
@@ -21,7 +21,7 @@ class razordemo::params (
     'centos-for-virtual' => {
       'ensure'        => 'present',
       'repo'          => 'centos-6.6',
-      'task'          => 'centos',
+      'task'          => 'centos/6',
       'broker'        => 'puppet-enterprise',
       'hostname'      => 'host${id}',
       'root_password' => 'puppet',

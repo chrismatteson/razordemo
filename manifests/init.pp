@@ -6,12 +6,9 @@ class razordemo (
   $tasks               = hiera_hash('razordemo::tasks_hash', $razordemo::params::tasks),
   $policies            = hiera_hash('razordemo::policies_hash', $razordemo::params::policies),
   $tags                = hiera_hash('razordemo::tags_hash', $razordemo::params::tags),
-  ) inherits razordemo::params {
+  ) inherits razordemo::params { 
 
-  include razordemo::client
-  contain razordemo::forward_ipv4
-
-  class {'pe_razor':} ->
+  Class['pe_razor::server', 'pe_razor'] -> 
   Class['razordemo::forward_ipv4'] ->
   file_line { '/etc/hosts':
     ensure => 'absent',
@@ -29,9 +26,9 @@ class razordemo (
     tasks    => $tasks,
     policies => $policies,
     tags     => $tags,
-  }
-  contain pe_razor
-  contain razordemo::dnsmasq
-  contain razordemo::config
+  } 
 
+  require pe_razor
+  include razordemo::client
+  include razordemo::forward_ipv4
 }
