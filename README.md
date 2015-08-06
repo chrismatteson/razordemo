@@ -1,9 +1,5 @@
 # razordemo
-
-Credit: The types and providers under lib here are taken and slightly modified
-from Lavaburn/razor.  I intend to wrap some case statements around the changes
-from <3.8 to >3.8 in terms of ports and security, and commit those upstream
-when I have time.
+## Synopsis
 
 This module builds a fully functioning Razor demo.  It requires two additional
 things to work seemlessly, both of which will be a part of a future seteam stack.
@@ -16,7 +12,7 @@ reason.  Apparently shutting down all VMs will avoid the need to kill it manuall
 host*.vm (This is done in the seteam-vagrant-stack)
 
 3) Build a VM which will PXE boot to the vboxnet0 network.  This can be done
-manually or you can pull down the box I built on atlas with:
+manually or you can pull down the box built on atlas with:
 vagrant init chrismatteson/iPXE.
 
 Additionally, this VM, already configured for the vboxnet0 is included in but
@@ -24,10 +20,12 @@ commented out of the seteam-vagrant-stack stack, and will require editing of
 config/vms.yaml to activate.  A vagrant up on that VM will also cause it to
 launch graphically.
 
+## Installation
 
 In order to use this module, simple classify a centos 6 VM with the class razordemo.
 Currently the module requires two puppet runs on the system to complete due to
-the need for Razor to build bootstrap.ipxe after it's installed. 
+the need for pe-razor to complete configuration bootstrap tasks related to torquebox.
+A ticket has been submitted to fix this issue.
 
 When Razor is launching the first time, it will sit for several minutes apparently
 doing nothing, and most like the only message on the screen will be a warning about
@@ -51,4 +49,12 @@ root/puppet
 
 Please let me know if you have questions or issues.  Thanks.
 
-- Chris Matteson 4/27/15
+
+## Contributors
+Chris Matteson - Original - 4/27/15 
+Kai Pak - 2015.2 fixes - 09/06/15 
+
+Credit: The types and providers under lib here are taken and slightly modified
+from Lavaburn/razor. Enough changes have occured with Razor between PE version 
+3.8.x and 2015.2 that master branch of this module will not work with 3.8.x 
+and older.
