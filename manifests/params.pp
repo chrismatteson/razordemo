@@ -14,7 +14,7 @@ class razordemo::params {
     'virtual' => {
       'ensure' => 'present',
       'rule'   => ['=', ['fact', 'is_virtual'], true ],
-    }
+    },
   }
   $tasks = 'undef'
 }
