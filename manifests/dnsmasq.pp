@@ -12,6 +12,10 @@ class razordemo::dnsmasq (
     require => Package['dnsmasq'],
   }
 
+  host { 'razor':
+    ip => $facts[networking][interfaces][eth1][ip],
+  }
+
   file { $dnsmasq_config_dir:
     ensure => directory,
   }
