@@ -15,6 +15,18 @@ class razordemo::params {
       'ensure' => 'present',
       'rule'   => ['=', ['fact', 'is_virtual'], true ],
     },
+    'small'   => {
+      'ensure' => 'present',
+      'rule'   => [ '=', ['fact', 'processorcount'], 1],
+    },
+    'medium'   => {
+      'ensure' => 'present',
+      'rule'   => [ '=', ['fact', 'processorcount'], 2],
+    },
+    'large'   => {
+      'ensure' => 'present',
+      'rule'   => [ '=', ['fact', 'processorcount'], 3],
+    },
   }
   $tasks = 'undef'
 }
