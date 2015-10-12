@@ -7,6 +7,7 @@ class razordemo::params {
       'broker_type' => 'puppet-pe',
       'configuration' => {
         'server' => 'master.inf.puppetlabs.demo',
+        'windows_agent_download_url' => 'https://pm.puppetlabs.com/puppet-agent/2015.2.1/latest/repos/windows/puppet-agent-x64.msi',
       },
     }
   }
