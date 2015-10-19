@@ -1,51 +1,34 @@
 # razordemo
 ## Synopsis
+### Current version: 3.1.1
 
-This module builds a fully functioning Razor demo.  It requires two additional
-things to work seemlessly, both of which will be a part of a future seteam stack.
+This module builds a fully functioning Razor demo infrastructure, including 
+pe_razor, gems for razor API wrapper tools, dnsmasq (TFTP, DHCP, DNS), a broker, 
+and initial razor tags (virtual, small, medium, large).  Implementation of 
+specific razor repos and policies are done outside of this module and with profiles 
+within the TSE Demo environment: currently, profile::razor::(cento67|esxi6|win2k12r2).  
+It's best to classify your razor node with one of these profiles and NOT this module directly.
 
-1) Disable DHCP for the vboxnet0 network on your VirtualBox setup.  I also had
-to do a ps -A, find the virtualbox dhcp process and kill it manually for some
-reason.  Apparently shutting down all VMs will avoid the need to kill it manually.
+DCHP process for the vboxnet0 network needs to be stopped: 
+vboxmanage dhcpserver remove --netname HostInterfaceNetworking-vboxnet0).  
+You can either do this manually, or run scripts/razor_up.sh in the Vagrant environment 
+directory which will do it for you.
 
-2) Update /etc/puppetlabs/puppet/autosign.conf with this line:
-host*.vm (This is done in the seteam-vagrant-stack)
-
-3) Build a VM which will PXE boot to the vboxnet0 network.  This can be done
-manually or you can pull down the box built on atlas with:
-vagrant init chrismatteson/iPXE.
-
-Additionally, this VM, already configured for the vboxnet0 is included in but
-commented out of the seteam-vagrant-stack stack, and will require editing of
-config/vms.yaml to activate.  A vagrant up on that VM will also cause it to
-launch graphically.
+Running the aforementioned script will also boot up an empty VM image we have in 
+Vagrant cloud (puppetlabs-tse/razorbase).  At a default, this will match the 
+tag "virtual" which will match every Razor policy we have a profile for.  If you 
+classify your Razor node with multiple profiles, it will match the latest policy
+created.  You can control this either by using different tags or disabling some policies
+using 'razor disable-policy --name policy_name'.
 
 ## Installation
 
-In order to use this module, simple classify a centos 6 VM with the class razordemo.
-Currently the module requires two puppet runs on the system to complete due to
-the need for pe-razor to complete configuration bootstrap tasks related to torquebox.
-A ticket has been submitted to fix this issue.
-
-When Razor is launching the first time, it will sit for several minutes apparently
-doing nothing, and most like the only message on the screen will be a warning about
-CPU compatibility.  Just wait.
-
-As configured, this module will install centos6.6 onto any system where
-is_virtual = true that boots from it.  Additional rules an be added to hiera and
-will be collected with a hiera_hash.  You can also manage the razor system using the
-razor gem.  Unfortunately do to a change in razor's ports, you either need to specify
--u https://localhost:8151 with every command, or run:
-gem install pe-razor-client --source http://rubygems.delivery.puppetlabs.net/
-Note that is our internal gem repositiory and will require you being on the VPN to
-access.
+Do not classify with this module directly, instead classify with a profile mentioned above. 
+The profiles require this module.
 
 Additional notes:
-The Razor OS Image (Centos 7) username and password are:
+The Razor microkernel (Centos 7) username and password are:
 root/thincrust
-
-The centos6.6 image which this installs had the username and password of:
-root/puppet
 
 Please let me know if you have questions or issues.  Thanks.
 
