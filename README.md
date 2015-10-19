@@ -6,11 +6,13 @@ This module builds a fully functioning Razor demo infrastructure, including
 pe_razor, gems for razor API wrapper tools, dnsmasq (TFTP, DHCP, DNS), a broker, 
 and initial razor tags (virtual, small, medium, large).  Implementation of 
 specific razor repos and policies are done outside of this module and with profiles 
-within the TSE Demo environment: currently, profile::razor::(cento67|esxi6|win2k12r2).  
+within the TSE Demo environment: currently, ```profile::razor::(cento67|esxi6|win2k12r2)```.  
 It's best to classify your razor node with one of these profiles and NOT this module directly.
 
 DCHP process for the vboxnet0 network needs to be stopped: 
-vboxmanage dhcpserver remove --netname HostInterfaceNetworking-vboxnet0).  
+```
+vboxmanage dhcpserver remove --netname HostInterfaceNetworking-vboxnet0)
+```
 You can either do this manually, or run scripts/razor_up.sh in the Vagrant environment 
 directory which will do it for you.
 
