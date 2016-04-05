@@ -24,12 +24,12 @@ class razordemo::forward_ipv4 {
   }
   firewall { '150 Allow DNS DHCP and TFTP':
     proto  => 'udp',
-    port   => [53, 67, 68, 69],
+    dport   => [53, 67, 68, 69],
     action => 'accept',
   }
   firewall { '175 Allow Razor Ports':
    proto  => 'tcp',
-   port   => [8150, 8151],
+   dport   => [8150, 8151],
    action => 'accept',
   }
 }
