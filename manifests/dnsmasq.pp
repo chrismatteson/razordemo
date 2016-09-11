@@ -13,7 +13,7 @@ class razordemo::dnsmasq (
   }
 
   host { 'razor':
-    ip => $facts[networking][interfaces][eth1][ip],
+    ip => $facts[networking][interfaces][eno33557248][ip],
   }
 
   file { $dnsmasq_config_dir:

@@ -6,7 +6,7 @@ class razordemo (
   $tags                = hiera_hash('razordemo::tags_hash', $razordemo::params::tags),
   ) inherits razordemo::params { 
 
-  Class['pe_razor::server', 'pe_razor'] -> 
+  Class['pe_razor'] -> 
   Class['razordemo::forward_ipv4'] ->
   file_line { '/etc/hosts':
     ensure => 'absent',
