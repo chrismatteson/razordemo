@@ -14,6 +14,7 @@ class razordemo::dnsmasq (
 
   host { 'razor':
     ip => $facts[networking][interfaces][eno33557248][ip],
+    host_aliases => [$hostname, $fqdn],
   }
 
   file { $dnsmasq_config_dir:
@@ -69,6 +70,9 @@ class razordemo::dnsmasq (
     $ipxe_dl_cmd = "/usr/bin/wget --no-check-certificate 'https://${hostname}:8151/api/microkernel/bootstrap?nic_max=1&http_port=8150' -O /var/lib/tftpboot/bootstrap.ipxe" 
   }
 
+  package { 'wget':
+    ensure => installed,
+  } ->
   exec { 'get bootstrap.ipxe from razor server' :
     command => $ipxe_dl_cmd, 
     tries   => 10,

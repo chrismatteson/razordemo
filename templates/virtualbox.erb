@@ -13,7 +13,7 @@ bind-interfaces
 # service.
 # Select a range from the address and netmask shown in VirtualBox's
 # host-only network configuration dialog:
-dhcp-range=10.20.1.150,10.20.1.200,infinite
+dhcp-range=172.20.20.150,172.20.20.200,infinite
 
 # DNS configuration
 dhcp-option=6,<%= @ipaddress_eno33557248 %>
@@ -43,5 +43,5 @@ domain=vm
 address=/vbox-host.vm/<%= @ipaddress_eno33557248 %>
 
 # This setting enables reverse DNS lookup.
-server=/10.in-addr.arpa/<%= @ipaddress_eno33557248 %>
+server=/172.in-addr.arpa/<%= @ipaddress_eno33557248 %>
 
