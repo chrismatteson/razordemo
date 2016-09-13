@@ -14,7 +14,8 @@ class razordemo::params {
       'ensure'      => 'present',
       'broker_type' => 'esxi',
       'configuration' => {
-        'vc_server' => 'tse-vc1-prod.corp.puppetlabs.net',
+        'vc_server'  => 'tse-vc1-prod.corp.puppetlabs.net',
+        'vc_cluster' => 'west1/host/Test',
         'vc_username' => 'tseadmin@vsphere.local',
         'vc_password' => 'PuppetLabs=>10',
       },

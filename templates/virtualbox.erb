@@ -1,7 +1,6 @@
 # Set this to the name of your VirtualBox host-only interface.
 # dnsmasq will listen for DHCP and DNS requests on this interface as
 # well as the loopback:
-interface=eno33557248
  
 # This option will be forced anyway on OS X so set here to avoid a warning:
 bind-interfaces
@@ -13,10 +12,11 @@ bind-interfaces
 # service.
 # Select a range from the address and netmask shown in VirtualBox's
 # host-only network configuration dialog:
-dhcp-range=172.20.20.150,172.20.20.200,infinite
+dhcp-range=10.0.16.250,10.0.16.253,infinite
+dhcp-ignore=tag:!known
 
 # DNS configuration
-dhcp-option=6,<%= @ipaddress_eno33557248 %>
+dhcp-option=6,<%= @ipaddress %>
  
 # The default directory does not exist on OSX and this cause an
 # error when enabling DHCP, set an alternative location here:
@@ -40,8 +40,8 @@ domain=vm
  
 # This must be the address of your host on the vboxnet0 network
 # find this in the VirtualBox host-only network preferences
-address=/vbox-host.vm/<%= @ipaddress_eno33557248 %>
+address=/vbox-host.vm/<%= @ipaddress %>
 
 # This setting enables reverse DNS lookup.
-server=/172.in-addr.arpa/<%= @ipaddress_eno33557248 %>
+server=/10.in-addr.arpa/<%= @ipaddress %>
 
